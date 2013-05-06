@@ -1,0 +1,36 @@
+#listcrossBanner {
+	background-color: #6c8a89;
+	padding: 15px;
+}
+
+#listcrossBanner a {
+	display: inline-block;
+	margin: 1em;
+}
+
+#listcrossBanner span {
+	padding-left:50px;
+	font-family: monospace;
+	font-size: 28pt;
+}
+
+
+#userLists {
+	padding-left: 20px;
+}
+
+#userLists ul li {
+	padding-top:15px;	
+}
+
+#userLists #showLists {
+	margin-top:40px;
+}
+
+#userLists #createList {
+	margin-top:10px;
+}
+
+#subheadingText {
+	margin-left:70px;
+}

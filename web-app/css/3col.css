@@ -1,0 +1,34 @@
+#maincontainer {
+	width: 960px; /*Width of main container*/
+	margin: 0 auto; /*Center container on page*/
+}
+
+#contentwrapper {
+	float: left;
+	width: 100%;
+}
+
+#contentcolumn {
+	margin: 0 190px 0 220px;
+	/*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
+}
+
+#leftcolumn {
+	float: left;
+	width: 220px; /*Width of left column in pixel*/
+	margin-left: -960px; /*Set margin to that of -(MainContainerWidth)*/
+	background: #D0E8EB;
+}
+
+#rightcolumn {
+	float: left;
+	width: 190px; /*Width of right column*/
+	margin-left: -190px; /*Set left margin to -(RightColumnWidth)*/
+	background: #FDE95E;
+}
+
+.innertube {
+	margin: 10px;
+	/*Margins for inner DIV inside each column (to provide padding)*/
+	margin-top: 0;
+}
