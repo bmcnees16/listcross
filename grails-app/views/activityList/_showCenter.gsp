@@ -26,11 +26,17 @@
 							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 								<td width="60px">${a.category.description}</td>
 								<td><g:link controller="activity" action="show" id="${a.id}">${a.description}</g:link></td>
+								<g:if test="${a?.ratings}">
+								<td>
 								<g:each in="${a.ratings}" var="r">
-									<g:if test="${r.user = user}">
-										<td><g:link controller="rating" action="show" id="${r.id}">${r.rating}</g:link></td>
-									</g:if>
+										<g:link controller="rating" action="show" id="${r.id}">${r.user.firstName} - ${r.rating}</g:link>
+										<br />
 								</g:each>
+								</td>
+								</g:if>
+								<g:else>
+									<td>Needs crossed!</td>
+								</g:else>
 							</tr>
 						</g:each>
 						</tbody>

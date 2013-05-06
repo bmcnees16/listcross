@@ -42,7 +42,7 @@ class ActivityListController {
 	@Secured(["ROLE_USER"])
     def show() {
 		def user = userService.currentUser()
-		//def ratings = user.ratings
+		def ratings = user.ratings
         def activityListInstance = ActivityList.get(params.id)
         if (!activityListInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'activityList.label', default: 'ActivityList'), params.id])

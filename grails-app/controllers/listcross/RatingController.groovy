@@ -1,11 +1,15 @@
 package listcross
 
+import grails.plugins.springsecurity.Secured
+
 import org.springframework.dao.DataIntegrityViolationException
 
 class RatingController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+	def userService
+	def springSecurityService
+	
     def index() {
         redirect(action: "list", params: params)
     }
@@ -15,13 +19,19 @@ class RatingController {
         [ratingInstanceList: Rating.list(params), ratingInstanceTotal: Rating.count()]
     }
 
+	@Secured(["ROLE_USER"])
     def create() {
-        [ratingInstance: new Rating(params)]
+		def user = userService.currentUser()
+		Rating rating = new Rating(params)
+		rating.user = user
+		
+        [ratingInstance: rating]
     }
 
     def save() {
         def ratingInstance = new Rating(params)
         if (!ratingInstance.save(flush: true)) {
+			
             render(view: "create", model: [ratingInstance: ratingInstance])
             return
         }

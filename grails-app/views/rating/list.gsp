@@ -24,9 +24,13 @@
 				<thead>
 					<tr>
 					
+						<th><g:message code="rating.activity.label" default="Activity" /></th>
+					
 						<g:sortableColumn property="comments" title="${message(code: 'rating.comments.label', default: 'Comments')}" />
 					
 						<g:sortableColumn property="rating" title="${message(code: 'rating.rating.label', default: 'Rating')}" />
+					
+						<th><g:message code="rating.user.label" default="User" /></th>
 					
 					</tr>
 				</thead>
@@ -34,9 +38,13 @@
 				<g:each in="${ratingInstanceList}" status="i" var="ratingInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${ratingInstance.id}">${fieldValue(bean: ratingInstance, field: "comments")}</g:link></td>
+						<td><g:link action="show" id="${ratingInstance.id}">${fieldValue(bean: ratingInstance, field: "activity")}</g:link></td>
+					
+						<td>${fieldValue(bean: ratingInstance, field: "comments")}</td>
 					
 						<td>${fieldValue(bean: ratingInstance, field: "rating")}</td>
+					
+						<td>${fieldValue(bean: ratingInstance, field: "user")}</td>
 					
 					</tr>
 				</g:each>

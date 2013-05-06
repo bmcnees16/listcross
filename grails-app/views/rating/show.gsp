@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list rating">
 			
+				<g:if test="${ratingInstance?.activity}">
+				<li class="fieldcontain">
+					<span id="activity-label" class="property-label"><g:message code="rating.activity.label" default="Activity" /></span>
+					
+						<span class="property-value" aria-labelledby="activity-label"><g:link controller="activity" action="show" id="${ratingInstance?.activity?.id}">${ratingInstance?.activity?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${ratingInstance?.comments}">
 				<li class="fieldcontain">
 					<span id="comments-label" class="property-label"><g:message code="rating.comments.label" default="Comments" /></span>
@@ -37,6 +46,15 @@
 					<span id="rating-label" class="property-label"><g:message code="rating.rating.label" default="Rating" /></span>
 					
 						<span class="property-value" aria-labelledby="rating-label"><g:fieldValue bean="${ratingInstance}" field="rating"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${ratingInstance?.user}">
+				<li class="fieldcontain">
+					<span id="user-label" class="property-label"><g:message code="rating.user.label" default="User" /></span>
+					
+						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${ratingInstance?.user?.id}">${ratingInstance?.user?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

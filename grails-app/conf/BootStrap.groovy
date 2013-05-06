@@ -92,11 +92,19 @@ class BootStrap {
 			user2.errors.allErrors.each{error -> println "An error occurred with user2: {$error}"}
 		}
 		
+		def user3 = new User(username:'jmcnees', firstName:'Jack', lastName:'McNees', enabled:true, password: 'pass')
+		user3.addToActivityLists(list1)
+		user3.addToActivityLists(list3)
+		if (!user3.save()) {
+			user3.errors.allErrors.each{error -> println "An error occurred with user3: {$error}"}
+		}
+		 
 		//******************************
 		//User Roles
 		//******************************
 		UserRole.create user1, userRole
 		UserRole.create user2, userRole
+		UserRole.create user3, userRole
 		
 		//******************************
 		//Ratings
@@ -113,6 +121,18 @@ class BootStrap {
 		user1.save()
 		activity2.addToRatings(rating2)
 		activity2.save()
+		
+		def rating3 = new Rating(rating: '9.4', comments: 'rolling acres comment')
+		user1.addToRatings(rating3)
+		user1.save()
+		activity5.addToRatings(rating3)
+		activity5.save()
+		
+		def rating4 = new Rating(rating: '6.5', comments: 'Karens rating for racoon')
+		user2.addToRatings(rating4)
+		user2.save()
+		activity1.addToRatings(rating4)
+		activity1.save()
 		
 		
 		
