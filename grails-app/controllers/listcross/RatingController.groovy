@@ -22,14 +22,16 @@ class RatingController {
 	@Secured(["ROLE_USER"])
     def create() {
 		def user = userService.currentUser()
-		Rating rating = new Rating(params)
+		Rating rating = new Rating()
 		rating.user = user
-		
+		rating.activity = Activity.get(params.id)
         [ratingInstance: rating]
     }
 
     def save() {
         def ratingInstance = new Rating(params)
+		//def ratingUser = User.get(params.user.toLong())
+		//ratingInstance.user = ratingUser
         if (!ratingInstance.save(flush: true)) {
 			
             render(view: "create", model: [ratingInstance: ratingInstance])

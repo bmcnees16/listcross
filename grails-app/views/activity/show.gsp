@@ -31,7 +31,16 @@
 					
 				</li>
 				</g:if>
-			
+				
+				<li class="fieldcontain">
+					<span id="listCrossLists-label" class="property-label">Included in the lists:</span>
+					
+						<g:each in="${activityInstance.listCrossLists}" var="l">
+						<span class="property-value" aria-labelledby="listCrossLists-label"><g:link controller="activityList" action="show" id="${l.id}">${l.title}</g:link></span>
+						</g:each>
+					
+				</li>
+				
 				<g:if test="${activityInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="activity.description.label" default="Description" /></span>
@@ -41,23 +50,15 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${activityInstance?.listCrossLists}">
-				<li class="fieldcontain">
-					<span id="listCrossLists-label" class="property-label"><g:message code="activity.listCrossLists.label" default="List Cross Lists" /></span>
-					
-						<g:each in="${activityInstance.listCrossLists}" var="l">
-						<span class="property-value" aria-labelledby="listCrossLists-label"><g:link controller="activityList" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
+				
+				
+				
 				<g:if test="${activityInstance?.ratings}">
 				<li class="fieldcontain">
 					<span id="ratings-label" class="property-label"><g:message code="activity.ratings.label" default="Ratings" /></span>
 					
 						<g:each in="${activityInstance.ratings}" var="r">
-						<span class="property-value" aria-labelledby="ratings-label"><g:link controller="rating" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="ratings-label"><g:link controller="rating" action="show" id="${r.id}">${r.user.firstName}: ${r.rating}<br />${r.comments}</g:link></span>
 						</g:each>
 					
 				</li>

@@ -18,19 +18,3 @@
 	<g:textField name="description" value="${activityInstance?.description}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activityInstance, field: 'listCrossLists', 'error')} ">
-	<label for="listCrossLists">
-		<g:message code="activity.listCrossLists.label" default="List Cross Lists" />
-		
-	</label>
-	
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: activityInstance, field: 'ratings', 'error')} ">
-	<label for="ratings">
-		<g:message code="activity.ratings.label" default="Ratings" />
-		
-	</label>
-	<g:select name="ratings" from="${listcross.Rating.list()}" multiple="multiple" optionKey="id" size="5" value="${activityInstance?.ratings*.id}" class="many-to-many"/>
-</div>
-

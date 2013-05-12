@@ -1,15 +1,6 @@
 <%@ page import="listcross.Rating" %>
 
 
-
-<div class="fieldcontain ${hasErrors(bean: ratingInstance, field: 'activity', 'error')} required">
-	<label for="activity">
-		<g:message code="rating.activity.label" default="Activity" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="activity" name="activity.id" from="${listcross.Activity.list()}" optionKey="id" required="" value="${ratingInstance?.activity?.id}" class="many-to-one"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: ratingInstance, field: 'comments', 'error')} ">
 	<label for="comments">
 		<g:message code="rating.comments.label" default="Comments" />
@@ -26,6 +17,5 @@
 	<g:field type="number" name="rating" required="" value="${fieldValue(bean: ratingInstance, field: 'rating')}"/>
 </div>
 
-
-<g:field type="number" name="user" value="${ratingInstance?.user?.id}" />
-
+<g:hiddenField name="activity.id" value="${ratingInstance?.activity?.id}" />
+<g:hiddenField name="user.id" value="${ratingInstance?.user?.id}" />
