@@ -24,8 +24,7 @@
 				<thead>
 					<tr>
 					
-						<th><g:message code="activity.category.label" default="Category" /></th>
-					
+						
 						<g:sortableColumn property="description" title="${message(code: 'activity.description.label', default: 'Description')}" />
 					
 					</tr>
@@ -33,8 +32,6 @@
 				<tbody>
 				<g:each in="${activityInstanceList}" status="i" var="activityInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${activityInstance.id}">${fieldValue(bean: activityInstance, field: "category")}</g:link></td>
 					
 						<td>${fieldValue(bean: activityInstance, field: "description")}</td>
 					

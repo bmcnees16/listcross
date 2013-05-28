@@ -21,12 +21,16 @@ class ActivityListController {
 		
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         //[activityListInstanceList: ActivityList.list(params), activityListInstanceTotal: ActivityList.count()]
-		[user:user, activityListInstanceList:activityLists, ratings: ratings, activityListInstanceTotal: ActivityList.count()]
+		[user:user, activityListInstanceList:activityLists, activityListInstanceTotal: ActivityList.count()]
     }
 
     def create() {
         [activityListInstance: new ActivityList(params)]
     }
+	
+	def addition() {
+		[activityListInstance: ActivityList.get(params.id)]
+	}
 
     def save() {
         def activityListInstance = new ActivityList(params)
@@ -38,21 +42,24 @@ class ActivityListController {
 		flash.message = message(code: 'default.created.message', args: [message(code: 'activityList.label', default: 'ActivityList'), activityListInstance.id])
         redirect(action: "show", id: activityListInstance.id)
     }
+	
+	def remove() {
+		def activityListInstance = ActivityList.get(params.id)
+		def userInstance = User.get(params.userid)
+		activityListInstance.removeFromUsers(userInstance)
+		if (!activityListInstance.save(flush: true)) {
+			render(view: "create", model: [activityListInstance: activityListInstance])
+			return
+		}
 
+		flash.message = "Successfully removed ${userInstance.firstName}"
+		redirect(action: "show", id: activityListInstance.id)
+	}
+	
 	@Secured(["ROLE_USER"])
     def show() {
-		//TODO: only return the ratings that are for a given user
-		//the way this code is set up, each List will need it's own activity only to keep the ratings separate.
-		//for example, if someone else and I (we don't know each other) want to do the same activity, we would
-		//need duplicate entries in the activity table.  this is only so that I don't see their rating and they
-		//dont' see mine.  This is not an ideal architecture b/c it does not allow you to group together 
-		//activities to see everyone who has done it.  in addition, it will create a lot of duplicate data 
-		//and i'm not sure how to let the user use template lists
-		//i currently hacked the page to only display the current logged in user by adding an if on the GSP page
-		//probably not hte best way to do this, especially when we want to add permissions later to be able to see
-		//certain ratings
-		def user = userService.currentUser()
-		def ratings = user.ratings
+		
+		def user = userService.currentUser()		
 		def pId = params.id
 		pId = pId.toLong()
         //def activityListInstance = ActivityList.get(params.id)
@@ -64,7 +71,7 @@ class ActivityListController {
             return
         }
 
-        [user: user, activityListInstance: activityListInstance, ratings:ratings]
+        [user: user, activityListInstance: activityListInstance]
     }
 
     def edit() {

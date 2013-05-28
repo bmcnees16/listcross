@@ -4,7 +4,6 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: '2col.css')}" type="text/css">
 		<g:set var="entityName" value="${message(code: 'activityList.label', default: 'ActivityList')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
@@ -21,28 +20,11 @@
 		</g:form>
 		</div>
 		
-		<div id="maincontainer">
-			<!-- CENTER COLUMN -->
-			<div id="contentwrapper">
-				<div id="contentcolumn">
-					<div class="innertube">
-						<div id="contentPane">
-							<g:render template="showCenter"
+		<div id="show-activityList" class="content scaffold-show" role="main">
+			<g:render template="showCenter"
 								model="${['activityListInstance':activityListInstance, 'user':user]}" />
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!-- RIGHT COLUMN -->
-			<div id="rightcolumn">
-				<div class="innertube">
-					<b>Future Ads</b>
-				</div>
-			</div>
-
 		</div>
-		
+				
 		
 	</body>
 </html>

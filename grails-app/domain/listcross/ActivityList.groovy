@@ -6,7 +6,7 @@ class ActivityList {
 	String description
 	
 	//static hasMany=[activityLists:ActivityList]
-	static hasMany=[activities:Activity]
+	static hasMany=[activities:Activity, users:User]
 	static belongsTo=User
 	
 	String toString() {

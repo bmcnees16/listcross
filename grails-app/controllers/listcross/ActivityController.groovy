@@ -16,18 +16,27 @@ class ActivityController {
     }
 
     def create() {
-        [activityInstance: new Activity(params)]
+        [activityInstance: new Activity(params), activityListId: params.id]
     }
 
     def save() {
+		//TODO:  wrap in a transaction
         def activityInstance = new Activity(params)
         if (!activityInstance.save(flush: true)) {
             render(view: "create", model: [activityInstance: activityInstance])
             return
         }
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'activity.label', default: 'Activity'), activityInstance.id])
-        redirect(action: "show", id: activityInstance.id)
+		//if the activityInstance saved, try to save the activityListInstance
+		def activityListInstance = ActivityList.get(params.activityListId)
+		activityListInstance.addToActivities(activityInstance)
+		if (!activityListInstance.save(flush: true)) {
+			render(controller: "ActivityList", view: "show", model: [activityListInstance: activityListInstance])
+			return
+		}
+		flash.message = "Activity was created successfully!"
+		redirect(controller: "ActivityList", action: "show", id: activityListInstance.id)
+//		flash.message = message(code: 'default.created.message', args: [message(code: 'activity.label', default: 'Activity'), activityInstance.id])
+//        redirect(action: "show", id: activityInstance.id)
     }
 
     def show() {

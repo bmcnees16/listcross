@@ -1,13 +1,13 @@
-<%@ page import="listcross.ActivityCategory" %>
+<%@ page import="listcross.ActivityList" %>
 <!doctype html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'activityCategory.label', default: 'ActivityCategory')}" />
-		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+		<g:set var="entityName" value="${message(code: 'activityList.label', default: 'ActivityList')}" />
+		<title>Add someone to the list</title>
 	</head>
 	<body>
-		<a href="#edit-activityCategory" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<a href="#edit-activityList" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -15,23 +15,23 @@
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
-		<div id="edit-activityCategory" class="content scaffold-edit" role="main">
+		<div id="edit-activityList" class="content scaffold-edit" role="main">
 			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<g:hasErrors bean="${activityCategoryInstance}">
+			<g:hasErrors bean="${activityListInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${activityCategoryInstance}" var="error">
+				<g:eachError bean="${activityListInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
 			<g:form method="post" >
-				<g:hiddenField name="id" value="${activityCategoryInstance?.id}" />
-				<g:hiddenField name="version" value="${activityCategoryInstance?.version}" />
+				<g:hiddenField name="id" value="${activityListInstance?.id}" />
+				<g:hiddenField name="version" value="${activityListInstance?.version}" />
 				<fieldset class="form">
-					<g:render template="form"/>
+					<g:render template="formAddition"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

@@ -1,0 +1,12 @@
+References:
+http://blog.springsource.org/2011/04/12/one-step-deployment-with-grails-and-cloud-foundry/
+http://grails-plugins.github.io/grails-cloud-foundry/docs/manual/ref/Scripts/cf-delete-app.html
+
+See all apps
+grails cf-apps
+
+Delete app
+grails cf-delete-app [--appname] [--force]
+
+Deploy application (doesn't exist yet)
+grails prod cf-push

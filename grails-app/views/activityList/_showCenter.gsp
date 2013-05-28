@@ -4,7 +4,26 @@
 	</h1>
 	<div id="subheadingText">
 		${activityListInstance?.description}
+		<br /> <br />
+		<g:link controller="activity" action="create"
+			id="${activityListInstance.id}">Add a new Activity to this List</g:link>
+		<br /><br />
+		<div id="userList">
+			<b>Users Crossing from this List:</b>
+			<ul>
+				<g:each in="${activityListInstance.users}" var="u">
+					<li>
+						${u.firstName} ${u.lastName}
+						<g:link controller="activityList" action="remove" id="${activityListInstance.id}" params="[userid:u.id]">Remove</g:link>
+					</li>
+				</g:each>
+				<li><g:link controller="activityList" action="addition" id="${activityListInstance.id}">Add someone else</g:link></li>
+			</ul>
+		</div>
 	</div>
+
+
+
 	<g:if test="${flash.message}">
 		<div class="message" role="status">
 			${flash.message}
@@ -18,39 +37,17 @@
 				<table>
 					<thead>
 						<tr>
-
-							<g:sortableColumn property="category" title="Category" />
-
 							<g:sortableColumn property="description" title="Description" />
-
-							<g:sortableColumn property="ratings" title="My Rating" />
 						</tr>
 					</thead>
 					<tbody>
 						<g:each in="${activityListInstance.activities}" status="i" var="a">
 
 							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-								<td width="60px">
-									${a.category.description}
-								</td>
 								<td><g:link controller="activity" action="show"
 										id="${a.id}">
 										${a.description}
 									</g:link></td>
-								<g:if test="${a?.ratings}">
-									<td><g:each in="${a.ratings}" var="r">
-											<g:if test="${r.user.id == user.id}">
-												<g:link controller="rating" action="show" id="${r.id}">
-													${r.user.firstName} - ${r.rating}
-												</g:link>
-											</g:if>
-											<br />
-										</g:each></td>
-								</g:if>
-								<g:else>
-									<td><g:link controller="rating" action="create"
-											id="${a.id}">Cross it!</g:link></td>
-								</g:else>
 							</tr>
 						</g:each>
 					</tbody>

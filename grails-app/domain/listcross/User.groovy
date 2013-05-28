@@ -9,7 +9,7 @@ class User {
 	String username
 	String password
 	
-	static hasMany=[activityLists:ActivityList, ratings:Rating]
+	static hasMany=[activityLists:ActivityList]
 	
 	boolean enabled
 	boolean accountExpired
@@ -20,7 +20,10 @@ class User {
 		username blank: false, unique: true
 		password blank: false
 	}
-
+	
+	String toString() {
+		"${lastName}, ${firstName}"
+	}
 	static mapping = {
 		password column: '`password`'
 	}
