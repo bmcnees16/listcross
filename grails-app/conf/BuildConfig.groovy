@@ -42,6 +42,9 @@ grails.project.dependency.resolution = {
         runtime ":resources:1.1.5"
 		
 		compile ":webxml:1.4.1"
+        //compile ":cloud-foundry:1.2.3"
+        compile ":spring-security-core:1.2.7.3"
+
 		
         build ":tomcat:$grailsVersion"
     }
