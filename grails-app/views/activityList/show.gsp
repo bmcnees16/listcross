@@ -1,30 +1,134 @@
 
-<%@ page import="listcross.ActivityList" %>
+<%@ page import="listcross.ActivityList"%>
 <!doctype html>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'activityList.label', default: 'ActivityList')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<a href="#show-activityList" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-		<g:form>
-		<g:hiddenField name="id" value="${activityListInstance?.id}" />
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>				
-				<li><g:link controller="logout">Sign Out</g:link></li>
-			
-			</ul>
-		</g:form>
+<head>
+<meta name="layout" content="rightSidebar">
+<g:set var="entityName"
+	value="${message(code: 'activityList.label', default: 'ActivityList')}" />
+<title><g:message code="default.show.label" args="[entityName]" /></title>
+</head>
+<body>
+
+	<!-- Main Wrapper -->
+	<div id="main-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="8u skel-cell-mainContent">
+
+					<!-- Content -->
+					<div id="content">
+						<article class="last">
+
+							<h2>
+								${activityListInstance?.title}
+							</h2>
+							<div id="subheadingText">
+								${activityListInstance?.description}
+							</div>
+
+							<g:if test="${flash.message}">
+								<div class="message" role="status">
+									${flash.message}
+								</div>
+							</g:if>
+							<ol class="property-list activityList">
+
+								<g:if test="${activityListInstance?.activities}">
+
+									<li class="fieldcontain">
+										<table>
+											<thead>
+												<tr>
+													<g:sortableColumn property="description"
+														title="Description" />
+												</tr>
+											</thead>
+											<tbody>
+												<g:each in="${activityListInstance.activities}" status="i"
+													var="a">
+
+													<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+														<td><g:link controller="activity" action="show"
+																id="${a.id}">
+																${a.description}
+															</g:link></td>
+													</tr>
+												</g:each>
+											</tbody>
+										</table>
+									</li>
+								</g:if>
+
+
+							</ol>
+
+						</article>
+					</div>
+
+				</div>
+				<div class="4u">
+
+					<!-- Sidebar -->
+					<div id="sidebar">
+						<section>
+							<ul>
+								<li><g:link controller="activityList"
+										class="button button-big button-icon button-icon-paper"
+										action="create">New List</g:link></li>
+								<li>&nbsp;</li>
+								<li><g:link controller="activityList" action="edit"
+										class="button button-big button-icon button-icon-paper"
+										action="create">Edit</g:link></li>
+							</ul>
+						</section>
+						<section>
+							<h3>List Cohorts</h3>
+							<ul>
+								<g:each in="${activityListInstance.users}" var="u">
+									<li>
+										${u.firstName} ${u.lastName} <g:link controller="activityList"
+											action="remove" id="${activityListInstance.id}"
+											params="[userid:u.id]">Remove</g:link>
+									</li>
+								</g:each>
+								<li><g:link controller="activityList" action="addition"
+										id="${activityListInstance.id}">Add someone else</g:link></li>
+							</ul>
+
+							<footer>
+								<a href="#" class="button button-icon button-icon-info">All
+									my Cohorts</a>
+							</footer>
+						</section>
+
+						<section>
+							<h3>Ads</h3>
+							<ul class="style2">
+								<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
+								<li><a href="#">Ornare in hendrerit in lectus</a></li>
+								<li><a href="#">Semper mod quis eget mi dolore</a></li>
+								<li><a href="#">Quam turpis feugiat sit dolor</a></li>
+								<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
+								<li><a href="#">Semper mod quisturpis nisi</a></li>
+							</ul>
+						</section>
+
+					</div>
+
+				</div>
+			</div>
 		</div>
-		
-		<div id="show-activityList" class="content scaffold-show" role="main">
-			<g:render template="showCenter"
-								model="${['activityListInstance':activityListInstance, 'user':user]}" />
-		</div>
-				
-		
-	</body>
+	</div>
+
+
+
+
+	<div id="show-activityList" class="content scaffold-show" role="main">
+		<g:render template="showCenter"
+			model="${['activityListInstance':activityListInstance, 'user':user]}" />
+	</div>
+
+
+</body>
 </html>
