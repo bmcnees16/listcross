@@ -14,6 +14,8 @@ class ActivityControllerTests {
       assert params != null
       // TODO: Populate valid properties like...
       //params["name"] = 'someValidName'
+	  params["id"] = '1'
+	  params["description"] = 'some test activity description'
     }
 
     void testIndex() {

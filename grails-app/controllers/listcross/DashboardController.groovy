@@ -7,10 +7,6 @@ class DashboardController {
 	def userService
 	def springSecurityService
 	
-	def ajaxGetActivities = {
-		def activityList = ActivityList.get(params.id)
-		render activityList?.activities as JSON 	
-	}
 	
 	@Secured(['ROLE_USER'])
     def index() {
@@ -19,10 +15,14 @@ class DashboardController {
 	
 	@Secured(['ROLE_USER'])
 	def dashboard() {
-		//def user = User.findByFirstName('Bob')
 		def user = userService.currentUser()
+		//TODO:  restrict the number of activity lists so it doesn't kill the page design
 		def activityLists = user.activityLists
-		[user:user, activityLists:activityLists]
+		//TODO:  restrict the users to only the ones I'm doing lists with
+		//also return the number of lists you're doing things with them on
+		//also need to make this link to ActivityLists/list.  THis won't work currently b/c the user element is hard coded in it
+		def userList = User.findAll()
+		[user:user, activityLists:activityLists, userList:userList]
 	}
 	
 	def crossIt() {

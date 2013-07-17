@@ -2,19 +2,23 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="rightSidebar">
 		<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#edit-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+	
+	
+	<!-- Main Wrapper -->
+	<div id="main-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="8u skel-cell-mainContent">
+
+					<!-- Content -->
+					<div id="content">
+						<article class="last">
+
 		<div id="edit-user" class="content scaffold-edit" role="main">
 			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -35,9 +39,39 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>
-	</body>
+		
+
+						</article>
+					</div>
+
+				</div>
+				<div class="4u">
+
+					<!-- Sidebar -->
+					<div id="sidebar">
+						
+
+						<section>
+							<h3>Ads</h3>
+							<ul class="style2">
+								<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
+								<li><a href="#">Ornare in hendrerit in lectus</a></li>
+								<li><a href="#">Semper mod quis eget mi dolore</a></li>
+								<li><a href="#">Quam turpis feugiat sit dolor</a></li>
+								<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
+								<li><a href="#">Semper mod quisturpis nisi</a></li>
+							</ul>
+						</section>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
 </html>

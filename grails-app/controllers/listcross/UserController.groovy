@@ -39,7 +39,7 @@ class UserController {
 		//give the user the dfeault role
 		UserRole.create userInstance, Role.findByAuthority("ROLE_USER")
 		
-		//TODO: how do i automatically log in the user and redirect them to the dashboard page?
+		//automatically log in the user and redirect them to the dashboard page
         redirect(controller: "dashboard", action: "dashboard")
     }
 
@@ -92,7 +92,8 @@ class UserController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-        redirect(action: "show", id: userInstance.id)
+        //redirect(action: "show", id: userInstance.id)
+		redirect(controller: "dashboard", action: "dashboard")
     }
 
     def delete() {

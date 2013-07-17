@@ -31,7 +31,7 @@
 							<ul>
 								<li><a href="index.html">Home</a></li>
 								<li><g:link controller="activityList" action="list">My lists</g:link></li>
-								<li><a href="#">About listCross</a></li>
+								<li><g:link url="${resource(dir:'dashboard', file:'about.gsp')}">About listCross</g:link></li>
 								<li><g:link controller="logout">Log Out</g:link></li>
 
 							</ul>
@@ -105,8 +105,9 @@
 								<h2>My Profile</h2>
 								<span class="byline">Who Am I</span>
 							</header>
+							<h2>${user.firstName} ${user.lastName}</h2>
 							<ul>
-								<li><a href="#">Edit My Profile</a></li>
+								<li><g:link controller="User" action="edit" id="${user.id}">Edit Profile</g:link></li>
 							</ul>
 						</div>
 					</section>
@@ -148,9 +149,13 @@
 								<span class="byline">What Others Are Up To</span>
 							</header>
 							<ul>
-								<li><a href="#">Person 1</a></li>
-								<li><a href="#">Person 2</a></li>
-								<li><a href="#">Person 3</a></li>
+								<g:each in="${userList}" var="cohort">
+<%--									<li><g:link controller="user" action="show"--%>
+<%--											id="${cohort.id}">--%>
+<%--											${cohort.firstName}--%>
+<%--										</g:link></li>--%>
+									<li>${cohort.firstName}</li>
+								</g:each>
 							</ul>
 						</div>
 					</section>

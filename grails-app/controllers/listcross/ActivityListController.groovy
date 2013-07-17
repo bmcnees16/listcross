@@ -16,6 +16,7 @@ class ActivityListController {
 
 	@Secured(["ROLE_USER"])
     def list() {
+		//user should not be here.  it should be somewhere else so we can look up the list for other users
 		def user = userService.currentUser()
 		def activityLists = user.activityLists
 		

@@ -3,8 +3,6 @@ package listcross
 class Activity {
 	
 	String description
-//	String completed
-//	ActivityCategory category;
 	
 	static belongsTo=ActivityList
 	
@@ -13,5 +11,6 @@ class Activity {
 	}
 	
     static constraints = {
+		description blank:false
     }
 }

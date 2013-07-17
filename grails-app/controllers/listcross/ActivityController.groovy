@@ -20,12 +20,13 @@ class ActivityController {
     }
 
     def save() {
-		//TODO:  wrap in a transaction
+		//TODO:  this app should not deal with the ActivityList controller.  This is tight coupling and bad design.
         def activityInstance = new Activity(params)
         if (!activityInstance.save(flush: true)) {
             render(view: "create", model: [activityInstance: activityInstance])
             return
         }
+		
 		//if the activityInstance saved, try to save the activityListInstance
 		def activityListInstance = ActivityList.get(params.activityListId)
 		activityListInstance.addToActivities(activityInstance)
@@ -37,6 +38,7 @@ class ActivityController {
 		redirect(controller: "ActivityList", action: "show", id: activityListInstance.id)
 //		flash.message = message(code: 'default.created.message', args: [message(code: 'activity.label', default: 'Activity'), activityInstance.id])
 //        redirect(action: "show", id: activityInstance.id)
+
     }
 
     def show() {
