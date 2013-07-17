@@ -30,4 +30,8 @@ class DashboardController {
 		def activityLists = user.activityLists
 		[activityLists:activityLists]
 	}
+	
+	def newList() {
+		
+	}
 }

@@ -34,12 +34,16 @@ class ActivityListController {
 
     def save() {
         def activityListInstance = new ActivityList(params)
+		
         if (!activityListInstance.save(flush: true)) {
             render(view: "create", model: [activityListInstance: activityListInstance])
             return
         }
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'activityList.label', default: 'ActivityList'), activityListInstance.id])
+		
+		def user = userService.currentUser()
+		user.addToActivityLists(activityListInstance)
+		user.save()
+		flash.message = 'Activity List Created Successfully!'
         redirect(action: "show", id: activityListInstance.id)
     }
 	

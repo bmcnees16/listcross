@@ -9,7 +9,9 @@
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-
+	
+	
+	
 	<!-- Main Wrapper -->
 	<div id="main-wrapper">
 		<div class="container">
@@ -77,9 +79,11 @@
 					<!-- Sidebar -->
 					<div id="sidebar">
 						<section>
-							<g:link controller="activityList"
-												class="button button-big button-icon button-icon-paper"
-												action="create">New List</g:link>
+							<modalbox:createLink controller="dashboard"
+												action="newList" title="New List!" width="600">
+												<div
+													class="button button-big button-icon button-icon-paper">New List</div>
+											</modalbox:createLink>
 						</section>
 						<section>
 							<h3>Cohorts</h3>

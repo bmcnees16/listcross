@@ -6,10 +6,11 @@
 <meta name="layout" content="rightSidebar">
 <g:set var="entityName"
 	value="${message(code: 'activityList.label', default: 'ActivityList')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+<title>My Lists</title>
 </head>
 <body>
-
+	
+	
 	<!-- Main Wrapper -->
 	<div id="main-wrapper">
 		<div class="container">
@@ -72,15 +73,9 @@
 					<!-- Sidebar -->
 					<div id="sidebar">
 						<section>
-							<ul>
-								<li><g:link controller="activityList"
+							<g:link controller="activityList" action="edit"
 										class="button button-big button-icon button-icon-paper"
-										action="create">New List</g:link></li>
-								<li>&nbsp;</li>
-								<li><g:link controller="activityList" action="edit"
-										class="button button-big button-icon button-icon-paper"
-										action="create">Edit</g:link></li>
-							</ul>
+										action="edit" id="${activityListInstance.id}">Edit</g:link>
 						</section>
 						<section>
 							<h3>List Cohorts</h3>
@@ -123,12 +118,12 @@
 
 
 
-
-	<div id="show-activityList" class="content scaffold-show" role="main">
-		<g:render template="showCenter"
-			model="${['activityListInstance':activityListInstance, 'user':user]}" />
-	</div>
-
-
+<script type='text/javascript'>
+	<!--
+		(function() {
+			document.forms['loginForm'].elements['j_username'].focus();
+		})();
+	// -->
+	</script>
 </body>
 </html>
