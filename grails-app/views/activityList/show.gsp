@@ -78,6 +78,11 @@
 										action="edit" id="${activityListInstance.id}">Edit</g:link>
 						</section>
 						<section>
+							<ul>
+								<li><g:link controller="activity" action="create" params="[id:activityListInstance.id]">Add Activity</g:link></li>
+							</ul>
+						</section>
+						<section>
 							<h3>List Cohorts</h3>
 							<ul>
 								<g:each in="${activityListInstance.users}" var="u">

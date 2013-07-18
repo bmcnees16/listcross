@@ -9,7 +9,7 @@ class User {
 	String username
 	String password
 	
-	static hasMany=[activityLists:ActivityList]
+	static hasMany=[activityLists:ActivityList, ratings:Rating]
 	
 	boolean enabled
 	boolean accountExpired
